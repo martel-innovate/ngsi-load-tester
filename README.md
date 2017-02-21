@@ -1,7 +1,9 @@
 NGSI Load Tester
 ================
 
-This repository provides a simple Docker image that execute load test on Context Broker instance (without any authentication mechanism enabled).
+This repository provides a simple Docker image that execute load test on a [Orion Context Broker](https://fiware-orion.readthedocs.io/en/master/) instance (without any authentication mechanism enabled).
+
+The load tester is based on [artillery.io](https://artillery.io), an easy-to-use load testing toolkit. Should you need to customize it, is should not be too difficult ;)
 
 Image Build
 -----------
@@ -32,6 +34,9 @@ Where `container_name` is the name of the container where your context broker ru
 | ART_DURATION | specify the duration of each test      | `10` |
 | ART_DEBUG | The debug settings for request and response. Set empty for not printing request and response. Set to `http` to print requests, and to `http:response` to print responses.  `http,http:response` to print both.  | `http,http:response` |
 
+#### Example
+```docker run --link ngsiloadtester_orion_1:orion -e ART_DEBUG='' -e ART_ARRIVALRATE=10 -e ART_DURATION=50 martel/ngsi-load-tester```
+
 
 Example adopted
 ---------------
@@ -61,3 +66,10 @@ From the main directory run:
 ```docker-compose up -d```
 
 ```docker run --link ngsiloadtester_orion_1:orion martel/ngsi-load-tester```
+
+TODO
+----
+
+1. Provide instructions on how to export results.
+2. Graph generation would be nice.
+3. Explore [statsd integration](https://github.com/shoreditch-ops/artillery-plugin-statsd).

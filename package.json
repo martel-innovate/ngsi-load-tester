@@ -1,12 +1,12 @@
 {
-  "name": "docker_artillery",
-  "version": "1.0.0",
-  "description": "Artillery.io for FIWARE ContextBroker on Docker",
-  "author": "Federico M. Facca",
-  "scripts": {
-    "start": "artillery run contextBroker.yml"
-  },
-  "dependencies": {
-    "artillery": "^1.5.1"
-  }
+	"name": "docker_artillery",
+	"version": "1.0.0",
+	"description": "Artillery.io for FIWARE ContextBroker on Docker",
+	"author": "Federico M. Facca",
+	"scripts": {
+		"start": "artillery run contextBroker.yml"
+	},
+	"dependencies": {
+		"artillery": "^1.5.1"
+	}
 }
