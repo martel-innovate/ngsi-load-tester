@@ -1,0 +1,37 @@
+config:
+  target: '$ART_TARGET'
+  http:
+    pool: 10
+    timeout: 10
+  phases:
+    - duration: $ART_DURATION
+      arrivalRate: $ART_ARRIVALRATE
+  payload:
+    path: "/usr/src/app/logs.csv"
+    fields:
+      - "ID"
+      - "Pressure"
+      - "Temperature"
+scenarios:
+  - flow:
+    - post:
+        headers: 
+          Content-Type: "application/json"
+        url: "/v2/entities"
+        json:
+           id: "Room{{ID}}"
+           type: "Room"
+           temperature:
+             value: "{{Temperature}}"
+             type: "Float"
+           pressure:
+             value: "{{Pressure}}"
+             type: "Integer"
+    - get:
+        headers:
+          Accept: "application/json"
+        url: "/v2/entities/Room{{ID}}"
+    - delete: 
+        headers:
+          Accept: "application/json"
+        url: "/v2/entities/Room{{ID}}"
