@@ -1,4 +1,4 @@
-NGSI Load Tester
+lixNGSI Load Tester
 ================
 
 This repository provides a simple Docker image that execute load test on a [Orion Context Broker](https://fiware-orion.readthedocs.io/en/master/) instance (without any authentication mechanism enabled).
@@ -70,6 +70,7 @@ From the main directory run:
 TODO
 ----
 
-1. Provide instructions on how to export results.
-2. Graph generation would be nice.
-3. Explore [statsd integration](https://github.com/shoreditch-ops/artillery-plugin-statsd).
+1. Better divide test in write / read / delete & read and write.
+2. Provide instructions on how to export results.
+3. Graph generation would be nice.
+4. Explore [statsd integration](https://github.com/shoreditch-ops/artillery-plugin-statsd).
