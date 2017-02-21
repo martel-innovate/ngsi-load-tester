@@ -1,4 +1,4 @@
-lixNGSI Load Tester
+NGSI Load Tester
 ================
 
 This repository provides a simple Docker image that execute load test on a [Orion Context Broker](https://fiware-orion.readthedocs.io/en/master/) instance (without any authentication mechanism enabled).
@@ -66,6 +66,11 @@ From the main directory run:
 ```docker-compose up -d```
 
 ```docker run --link ngsiloadtester_orion_1:orion martel/ngsi-load-tester```
+
+
+HOW TO CONTRIBUTE
+-----------------
+Make pull requests :)
 
 TODO
 ----
