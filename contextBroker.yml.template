@@ -6,6 +6,7 @@ config:
   phases:
     - duration: $ART_DURATION
       arrivalRate: $ART_ARRIVALRATE
+      rampTo: $ART_RAMPTO
   payload:
     path: "/usr/src/app/logs.csv"
     fields:
@@ -17,6 +18,7 @@ scenarios:
     - post:
         headers: 
           Content-Type: "application/json"
+          Fiware-Service: "ScalabilityTest"
         url: "/v2/entities"
         json:
            id: "Room{{ID}}"
@@ -30,8 +32,10 @@ scenarios:
     - get:
         headers:
           Accept: "application/json"
+          Fiware-Service: "ScalabilityTest"
         url: "/v2/entities/Room{{ID}}"
     - delete: 
         headers:
           Accept: "application/json"
+          Fiware-Service: "ScalabilityTest"
         url: "/v2/entities/Room{{ID}}"

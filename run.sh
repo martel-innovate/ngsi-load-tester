@@ -4,18 +4,21 @@ printenv | sed 's/^\(.*\)$/export \1/g' | grep -E "^export ART" > project_env.sh
 sh project_env.sh
 echo "ID,Pressure,Temperature" > logs.csv
 
-for X1 in $(seq 0 ${ART_DURATION})
-#for X1 in {0 .. $ART_DURATION}
-do
-   ID=$((RANDOM % (1024) ))
-   #for X2 in {0 .. $ART_ARRIVALRATE}
-   for X2 in $(seq 0 ${ART_ARRIVALRATE})
-   do
-     PRESSURE=$((RANDOM % (860-720+1) +720 ))
-     TEMPERATURE=$((RANDOM % (120) - 20 ))
-     echo "$ID,$PRESSURE,$TEMPERATURE" >> logs.csv
-   done
-done
+loop=$((${ART_DURATION} * ${ART_RAMPTO}))
+
+awk -v loop=$loop -v range=$loop 'BEGIN{
+  srand()
+  do {
+    numb = 1 + int(rand() * range)
+    if (!(numb in prev)) {
+       pressure = 720 + int(rand() * 140)
+       temperature = -20 + int(rand() * 60)
+       print numb "," pressure "," temperature >> "logs.csv"
+       prev[numb] = 1
+       count++
+    }
+  } while (count<loop)
+}'
 
 if [ ! -z "$ORION_PORT_1026_TCP_ADDR" ]
 then

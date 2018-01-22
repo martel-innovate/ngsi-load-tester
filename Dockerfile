@@ -20,6 +20,7 @@ COPY contextBroker.yml.template /usr/src/app
 ENV ART_TARGET http://localhost:1026
 ENV ART_ARRIVALRATE 5
 ENV ART_DURATION 10
+ENV ART_RAMPTO 20
 ENV ART_DEBUG http,http:response
 
 CMD ["/bin/bash", "run.sh"]
